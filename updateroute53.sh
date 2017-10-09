@@ -19,7 +19,7 @@ COMMENT="Auto updating @ `date`"
 TYPE="A"
 
 # Get the external IP address from OpenDNS (more reliable than other providers)
-IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+IP=`curl -4sS "http://checkip.amazonaws.com"`
 
 function valid_ip()
 {
@@ -87,7 +87,9 @@ EOF
     # Update the Hosted Zone record
     aws route53 change-resource-record-sets \
         --hosted-zone-id $ZONEID \
-        --change-batch file://"$TMPFILE" >> "$LOGFILE"
+        --change-batch file://"$TMPFILE" \
+        --query '[ChangeInfo.Comment, ChangeInfo.Id, ChangeInfo.Status, ChangeInfo.SubmittedAt]' \
+        --output text >> "$LOGFILE"
     echo "" >> "$LOGFILE"
 
     # Clean up
