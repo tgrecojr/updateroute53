@@ -41,8 +41,8 @@ function valid_ip()
 # Get current dir
 # (from http://stackoverflow.com/a/246128/920350)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-LOGFILE="$DIR/update-route53.log"
-IPFILE="$DIR/update-route53.ip"
+LOGFILE="$DIR/updateroute53.log"
+IPFILE="$DIR/updateroute53.ip"
 
 if ! valid_ip $IP; then
     echo "Invalid IP address: $IP" >> "$LOGFILE"
@@ -57,10 +57,10 @@ fi
 
 if grep -Fxq "$IP" "$IPFILE"; then
     # code if found
-    echo "IP is still $IP. Exiting" >> "$LOGFILE"
+    echo "`date`: IP is still $IP. Exiting" >> "$LOGFILE"
     exit 0
 else
-    echo "IP has changed to $IP" >> "$LOGFILE"
+    echo "`date`: IP has changed to $IP" >> "$LOGFILE"
     # Fill a temp file with valid JSON
     TMPFILE=$(mktemp /tmp/temporary-file.XXXXXXXX)
     cat > ${TMPFILE} << EOF
