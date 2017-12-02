@@ -25,8 +25,8 @@ IP=`curl -s "http://v6.ipv6-test.com/api/myip.php"`
 # Get current dir
 # (from http://stackoverflow.com/a/246128/920350)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-LOGFILE="$DIR/updateroute53.log"
-IPFILE="$DIR/updateroute53.ip"
+LOGFILE="$DIR/updateroute53v6.log"
+IPFILE="$DIR/updateroute53v6.ip"
 
 
 # Check if the IP has changed
