@@ -16,7 +16,7 @@ TTL=300
 # Change this if you want
 COMMENT="Auto updating @ `date`"
 # Change to AAAA if using an IPv6 address
-TYPE="A"
+TYPE="AAAA"
 
 # Get the external IP address from OpenDNS (more reliable than other providers)
 IP=`curl -s "http://v6.ipv6-test.com/api/myip.php"`
